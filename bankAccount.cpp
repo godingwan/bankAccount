@@ -3,8 +3,7 @@
     Date: March 17, 2015
     Purpose: Creating a bank account program that allows users to login and save information.
     Algorithm: 
-        1) Show a menu to allow user to either create a bank account, login, and close
-        2) Validate that the user chose a valid option
+        1) Show a menu to allow user to either create a bank account, login, and close 2) Validate that the user chose a valid option
         3) If the user wants to create a login, allow them to create and save the info to a file
         4) If the user wants to login, validate that the info matches and log them in and show a new menu
         5) If the user wants to quit, send a goodbye message
@@ -21,5 +20,44 @@
 #include <string>
 // Including below allows you to read input or output to a file
 #include <fstream> 
+using namespace std;
 
+char mainMenu();
+bool validateMainMenu(char);
 
+int main()
+{
+  mainMenu();
+}
+
+char mainMenu()
+{
+  char choice = 'a';
+
+  // Continues to show the menu until a valid choice is made
+  while (!validateMainMenu(choice)) {
+    cout << "Main Menu: \n";
+    cout << "C: Create a bank account.\n";
+    cout << "L: Log into account.\n"; cout << "Q: Quit.\n";
+    cin >> choice;
+  }
+
+  return choice; }
+
+bool validateMainMenu(char input)
+{
+  if (input == 'C')
+    return true;
+  else if (input == 'c')
+    return true;
+  else if (input == 'L')
+    return true;
+  else if (input == 'l')
+    return true;
+  else if (input == 'Q')
+    return true;
+  else if (input == 'q')
+    return true;
+  else
+    return false;
+}
