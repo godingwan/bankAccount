@@ -25,9 +25,39 @@ using namespace std;
 char mainMenu();
 bool validateMainMenu(char);
 
-int main()
+int main() 
 {
-  mainMenu();
+  // Output the main menu and store the choice
+  char choice = mainMenu();
+  switch (choice)
+  {
+    case 'q':
+    case 'Q':
+    {
+      cout << "Goodbye";
+      break;
+    }
+    case 'c':
+    case 'C':
+    {  
+      string account;
+      string password;
+      // Set a random password that will never be set
+      string verifyPassword = "ewriouti3489715ydhfasdfneiru";
+
+      cout << "What would you like as a user id? ";
+      cin >> account;
+      cout << "Please set a password. ";
+      cin >> password;
+      // Keep asking to verify password until it is the same
+      while (verifyPassword != password)
+      {
+        cout << "Please verify the password. ";
+        cin >> verifyPassword;
+      }
+      cout << "Account successfully created.\n";
+    }
+  }
 }
 
 char mainMenu()
@@ -35,14 +65,16 @@ char mainMenu()
   char choice = 'a';
 
   // Continues to show the menu until a valid choice is made
-  while (!validateMainMenu(choice)) {
+  while (!validateMainMenu(choice)) 
+  {
     cout << "Main Menu: \n";
     cout << "C: Create a bank account.\n";
-    cout << "L: Log into account.\n"; cout << "Q: Quit.\n";
+    cout << "L: Log into account.\n"; 
+    cout << "Q: Quit.\n";
     cin >> choice;
   }
-
-  return choice; }
+  return choice; 
+}
 
 bool validateMainMenu(char input)
 {
