@@ -78,18 +78,27 @@ char mainMenu()
 
 bool validateMainMenu(char input)
 {
-  if (input == 'C')
-    return true;
-  else if (input == 'c')
-    return true;
-  else if (input == 'L')
-    return true;
-  else if (input == 'l')
-    return true;
-  else if (input == 'Q')
-    return true;
-  else if (input == 'q')
-    return true;
-  else
-    return false;
+  switch (input)
+  {
+    case 'C':
+    case 'c':
+    {
+      return true;
+      break;
+    }
+    case 'L':
+    case 'l':
+    {
+      return true;
+      break;
+    }
+    case 'Q':
+    case 'q':
+    {
+      return true;
+      break;
+    }
+    default:
+      return false;
+  }
 }
