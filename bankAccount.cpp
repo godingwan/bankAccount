@@ -30,6 +30,7 @@ char loginMenu();
 string navigateLoginMenu(char);
 void displayAmount();
 string depositAmount();
+string withdrawAmount();
 
 // Global variables used to set account detail
 string account = "notSet";
@@ -53,7 +54,7 @@ int main()
   while (output == "loggedIn")
   {
     choice = loginMenu();
-    navigateLoginMenu(choice);
+    output = navigateLoginMenu(choice);
   }
   cout << "Thanks for stopping by!\n" << endl;
 }
@@ -69,13 +70,12 @@ string navigateLoginMenu(char choice)
       depositAmount();
       return "loggedIn";
     }
-    /*
     case 'w':
     case 'W':
     {
-      // withdrawAmount();
+      withdrawAmount();
+      return "loggedIn";
     }
-    */
     case 'r':
     case 'R':
     {
@@ -87,6 +87,22 @@ string navigateLoginMenu(char choice)
       return "Goodbye";
     }
   }
+}
+
+string withdrawAmount()
+{
+  double withdraw;
+  cout << "Enter amount of withdrawal: $";
+  cin >> withdraw;
+  if (withdraw > balance)
+  {
+    cout << "Sorry withdrawal amount exceeds the balance amount. Can’t withdraw!";
+  }
+  else
+  {
+    balance -= withdraw;
+  }
+  return "loggedIn";
 }
 
 string depositAmount()
