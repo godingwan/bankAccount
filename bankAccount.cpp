@@ -29,6 +29,7 @@ void createAccount();
 char loginMenu();
 string navigateLoginMenu(char);
 void displayAmount();
+string depositAmount();
 
 // Global variables used to set account detail
 string account = "notSet";
@@ -49,27 +50,26 @@ int main()
     choice = mainMenu();
     output = navigateMenu(choice);
   }
-  if (output == "loggedIn")
+  while (output == "loggedIn")
   {
     choice = loginMenu();
     navigateLoginMenu(choice);
   }
-  else
-  {
-    cout << "Thanks for stopping by!\n" << endl;
-  }
+  cout << "Thanks for stopping by!\n" << endl;
 }
 
 string navigateLoginMenu(char choice)
 {
   switch(choice)
   {
-    /*
+
     case 'd':
     case 'D':
     {
-      // depositAmount();
+      depositAmount();
+      return "loggedIn";
     }
+    /*
     case 'w':
     case 'W':
     {
@@ -87,6 +87,20 @@ string navigateLoginMenu(char choice)
       return "Goodbye";
     }
   }
+}
+
+string depositAmount()
+{
+  double deposit;
+  cout << "Enter amount of deposit: $";
+  cin >> deposit;
+  while (deposit <= 0)
+  {
+    cout << "Enter an amount greater than 0: $";
+    cin >> deposit;
+  }
+  balance += deposit;
+  return "loggedIn";
 }
 
 void displayAmount()
