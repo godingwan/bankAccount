@@ -18,6 +18,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 using namespace std;
 
 char mainMenu();
@@ -25,6 +26,9 @@ bool validateMainMenu(char);
 string navigateMenu(char);
 bool login();
 void createAccount();
+char loginMenu();
+string navigateLoginMenu(char);
+void displayAmount();
 
 // Global variables used to set account detail
 string account = "notSet";
@@ -40,14 +44,66 @@ int main()
 
   // Send the choice and make the program do what the user wants
   output = navigateMenu(choice);
+  while (output == "Created")
+  {
+    choice = mainMenu();
+    output = navigateMenu(choice);
+  }
   if (output == "loggedIn")
   {
-    // loginMenu();
+    choice = loginMenu();
+    navigateLoginMenu(choice);
   }
   else
   {
     cout << "Thanks for stopping by!\n" << endl;
   }
+}
+
+string navigateLoginMenu(char choice)
+{
+  switch(choice)
+  {
+    /*
+    case 'd':
+    case 'D':
+    {
+      // depositAmount();
+    }
+    case 'w':
+    case 'W':
+    {
+      // withdrawAmount();
+    }
+    */
+    case 'r':
+    case 'R':
+    {
+      displayAmount();
+      return "loggedIn";
+    }
+    default:
+    {
+      return "Goodbye";
+    }
+  }
+}
+
+void displayAmount()
+{
+  cout << "Your balance is $" << setprecision(2) << fixed << balance << endl;
+}
+
+char loginMenu()
+{
+  char choice;
+  cout << "Please select an option from the menu below\n";
+  cout << "D -> Deposit Money\n";
+  cout << "W -> Withdraw Money\n";
+  cout << "R -> Request Balance\n";
+  cout << "Q -> quit\n";
+  cin >> choice;
+  return choice;
 }
 
 void createAccount()
@@ -82,7 +138,7 @@ string navigateMenu(char choice)
     case 'C':
     {
       createAccount();
-      return "loggedIn";
+      return "Created";
       break;
     }
     case 'l':
@@ -99,6 +155,7 @@ string navigateMenu(char choice)
         loggedIn = login();
         if (loggedIn == true)
         {
+          cout << "Access Granted!\n";
           return "loggedIn";
         }
         else
