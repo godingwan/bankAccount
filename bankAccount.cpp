@@ -21,6 +21,7 @@
 #include <iomanip>
 using namespace std;
 
+// function prototypes
 char mainMenu();
 bool validateMainMenu(char);
 string navigateMenu(char);
@@ -46,11 +47,15 @@ int main()
 
   // Send the choice and make the program do what the user wants
   output = navigateMenu(choice);
+
+  // Continue to show mainMenu until the user quit
   while (output == "Created")
   {
     choice = mainMenu();
     output = navigateMenu(choice);
   }
+
+  // Continue to show the logged in menu until quit
   while (output == "loggedIn")
   {
     choice = loginMenu();
@@ -94,14 +99,16 @@ string withdrawAmount()
   double withdraw;
   cout << "Enter amount of withdrawal: $";
   cin >> withdraw;
+  // Check if withdrawal amount is greater than balance
   if (withdraw > balance)
   {
-    cout << "Sorry withdrawal amount exceeds the balance amount. Can’t withdraw!";
+    cout << "Sorry withdrawal amount exceeds the balance amount. Can't withdraw!\n";
   }
   else
   {
     balance -= withdraw;
   }
+  // tell the computer to show the logged in menu
   return "loggedIn";
 }
 
@@ -225,6 +232,7 @@ bool login()
   }
   else
   {
+    cout << "That account does not exist.\n";
     return false;
   }
 }
@@ -246,6 +254,7 @@ char mainMenu()
   return choice;
 }
 
+// function to make sure that they are inputting a valid choice
 bool validateMainMenu(char input)
 {
   switch (input)
