@@ -40,6 +40,10 @@ double balance = 0.0;
 
 int main()
 {
+//declare an array of float for balance,
+
+//delcare two arrays for username and password
+
   cout << "Hi! Welcome to Future Computer Programmer ATM Machine!";
   // Output the main menu and store the choice
   char choice = mainMenu();
@@ -49,7 +53,7 @@ int main()
   output = navigateMenu(choice);
 
   // Continue to show mainMenu until the user quit
-  while (output == "Created")
+  while (output == "MainMenu")
   {
     choice = mainMenu();
     output = navigateMenu(choice);
@@ -148,9 +152,9 @@ void createAccount()
   // Set a random password that will never be set
   string verifyPassword = "ewriouti3489715ydhfasdfneiru";
 
-  cout << "What would you like as a user id? ";
+  cout << "Please enter your user name: ";
   cin >> account;
-  cout << "Please set a password. ";
+  cout << "Please enter your password: ";
   cin >> password;
   // Keep asking to verify password until it is the same
   while (verifyPassword != password)
@@ -158,7 +162,7 @@ void createAccount()
     cout << "Please verify the password. ";
     cin >> verifyPassword;
   }
-  cout << "Account successfully created.\n";
+  cout << "Thank you! Your account has been created!\n";
 }
 
 string navigateMenu(char choice)
@@ -175,20 +179,20 @@ string navigateMenu(char choice)
     case 'C':
     {
       createAccount();
-      return "Created";
+      return "MainMenu";
       break;
     }
     case 'l':
     case 'L':
     {
       bool loggedIn;
-      if (account == "notSet")
-      {
-        cout << "Please create a username.\n";
-        return "Goodbye";
-      }
-      else
-      {
+//      if (account == "notSet")
+//      {
+//        cout << "Sorry Login Failed!\n";
+//        return "MainMenu";
+//      }
+//      else
+//      {
         loggedIn = login();
         if (loggedIn == true)
         {
@@ -197,9 +201,10 @@ string navigateMenu(char choice)
         }
         else
         {
-          return "Goodbye";
+          cout << "Incorrect Username or Password!\n";
+          return "MainMenu";
         }
-      }
+      //}
       break;
     }
     default:
@@ -214,15 +219,17 @@ bool login()
   string username;
   string verifyPassword;
 
-  cout << "Enter username: ";
+  cout << "Please enter your user name: ";
   cin >> username;
+  cout << "Please enter your password: ";
+  cin >> verifyPassword;
 
   if (username == account)
   {
-    cout << "Enter password: ";
-    cin >> verifyPassword;
+
     if (verifyPassword == password)
     {
+      cout << "Access Granted!";
       return true;
     }
     else
@@ -232,7 +239,7 @@ bool login()
   }
   else
   {
-    cout << "That account does not exist.\n";
+    cout << "Sorry Login Failed!\n";
     return false;
   }
 }
